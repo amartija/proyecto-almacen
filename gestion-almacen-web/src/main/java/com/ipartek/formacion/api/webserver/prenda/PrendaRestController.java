@@ -62,23 +62,24 @@ public class PrendaRestController {
 
 	}
 
-	@RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Prenda> update(@PathVariable("codigo") long codigo) {
-		Prenda pre = ps.getById(codigo);
-		Prenda prenda = ps.update(pre);
-		ResponseEntity<Prenda> response = null;
-
-		if (prenda == null) {
-
-			response = new ResponseEntity<Prenda>(HttpStatus.NOT_FOUND);
-
-		} else {
-
-			response = new ResponseEntity<Prenda>(prenda, HttpStatus.OK);
-
-		}
-
-		return response;
-	}
+	/*
+	 * @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces
+	 * = { MediaType.APPLICATION_JSON_VALUE }) public ResponseEntity<Prenda>
+	 * update(@PathVariable("codigo") long codigo) { Prenda pre =
+	 * ps.getById(codigo); Prenda prenda = ps.update(pre);
+	 * ResponseEntity<Prenda> response = null;
+	 * 
+	 * if (prenda == null) {
+	 * 
+	 * response = new ResponseEntity<Prenda>(HttpStatus.NOT_FOUND);
+	 * 
+	 * } else {
+	 * 
+	 * response = new ResponseEntity<Prenda>(prenda, HttpStatus.OK);
+	 * 
+	 * }
+	 * 
+	 * return response; }
+	 */
 
 }

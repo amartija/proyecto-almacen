@@ -15,7 +15,7 @@ import com.ipartek.formacion.persistence.Coleccion;
 import com.ipartek.formacion.service.interfaces.ColeccionService;
 
 @RestController
-@RequestMapping("/api/coleccion")
+@RequestMapping("/api/colecciones")
 public class ColeccionRestController {
 
 	@Autowired
@@ -62,23 +62,24 @@ public class ColeccionRestController {
 
 	}
 
-	@RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Coleccion> update(@PathVariable("codigo") long codigo) {
-		Coleccion col = cs.getById(codigo);
-		Coleccion coleccion = cs.update(col);
-		ResponseEntity<Coleccion> response = null;
-
-		if (coleccion == null) {
-
-			response = new ResponseEntity<Coleccion>(HttpStatus.NOT_FOUND);
-
-		} else {
-
-			response = new ResponseEntity<Coleccion>(coleccion, HttpStatus.OK);
-
-		}
-
-		return response;
-	}
+	/*
+	 * @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces
+	 * = { MediaType.APPLICATION_JSON_VALUE }) public ResponseEntity<Coleccion>
+	 * update(@PathVariable("codigo") long codigo) { Coleccion col =
+	 * cs.getById(codigo); Coleccion coleccion = cs.update(col);
+	 * ResponseEntity<Coleccion> response = null;
+	 * 
+	 * if (coleccion == null) {
+	 * 
+	 * response = new ResponseEntity<Coleccion>(HttpStatus.NOT_FOUND);
+	 * 
+	 * } else {
+	 * 
+	 * response = new ResponseEntity<Coleccion>(coleccion, HttpStatus.OK);
+	 * 
+	 * }
+	 * 
+	 * return response; }
+	 */
 
 }

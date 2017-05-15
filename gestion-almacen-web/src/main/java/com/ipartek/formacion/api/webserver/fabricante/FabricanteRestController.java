@@ -61,23 +61,23 @@ public class FabricanteRestController {
 		return response;
 	}
 
-	@RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Fabricante> update(@PathVariable("codigo") long codigo) {
-		Fabricante fab = fs.getById(codigo);
-		Fabricante fabricante = fs.update(fab);
-		ResponseEntity<Fabricante> response = null;
-
-		if (fabricante == null) {
-
-			response = new ResponseEntity<Fabricante>(HttpStatus.NOT_FOUND);
-
-		} else {
-
-			response = new ResponseEntity<Fabricante>(fabricante, HttpStatus.OK);
-
-		}
-
-		return response;
-	}
-
+	/*
+	 * @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces
+	 * = { MediaType.APPLICATION_JSON_VALUE }) public ResponseEntity<Fabricante>
+	 * update(@PathVariable("codigo") long codigo) { Fabricante fab =
+	 * fs.getById(codigo); Fabricante fabricante = fs.update(fab);
+	 * ResponseEntity<Fabricante> response = null;
+	 * 
+	 * if (fabricante == null) {
+	 * 
+	 * response = new ResponseEntity<Fabricante>(HttpStatus.NOT_FOUND);
+	 * 
+	 * } else {
+	 * 
+	 * response = new ResponseEntity<Fabricante>(fabricante, HttpStatus.OK);
+	 * 
+	 * }
+	 * 
+	 * return response; }
+	 */
 }
