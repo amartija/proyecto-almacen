@@ -88,7 +88,7 @@ public class Coleccion implements Serializable {
 
 	}
 
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 

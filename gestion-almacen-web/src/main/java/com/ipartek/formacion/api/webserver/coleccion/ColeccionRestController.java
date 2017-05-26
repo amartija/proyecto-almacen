@@ -3,14 +3,17 @@ package com.ipartek.formacion.api.webserver.coleccion;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ipartek.formacion.persistence.Coleccion;
 import com.ipartek.formacion.service.interfaces.ColeccionService;
@@ -65,24 +68,26 @@ public class ColeccionRestController {
 
 	}
 
-	/*
-	 * @RequestMapping(value = "/{codigo}", method = RequestMethod.GET, produces
-	 * = { MediaType.APPLICATION_JSON_VALUE }) public ResponseEntity<Coleccion>
-	 * update(@PathVariable("codigo") long codigo) { Coleccion col =
-	 * cs.getById(codigo); Coleccion coleccion = cs.update(col);
-	 * ResponseEntity<Coleccion> response = null;
-	 * 
-	 * if (coleccion == null) {
-	 * 
-	 * response = new ResponseEntity<Coleccion>(HttpStatus.NOT_FOUND);
-	 * 
-	 * } else {
-	 * 
-	 * response = new ResponseEntity<Coleccion>(coleccion, HttpStatus.OK);
-	 * 
-	 * }
-	 * 
-	 * return response; }
-	 */
+	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Long> create(@RequestBody Coleccion coleccion, UriComponentsBuilder ucBuilder) {
+		Coleccion col = cs.getById(coleccion.getCodigo());
+		ResponseEntity<Long> response = null;
+
+		if (col != null) {
+			response = new ResponseEntity<Long>(HttpStatus.CONFLICT);
+		} else {
+			try {
+				Coleccion aux = cs.create(coleccion);
+				response = new ResponseEntity<Long>(aux.getCodigo(), HttpStatus.CREATED);
+			} catch (Exception e) {
+				response = new ResponseEntity<Long>(HttpStatus.NOT_ACCEPTABLE);
+
+			}
+
+		}
+
+		return response;
+	}
 
 }
